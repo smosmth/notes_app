@@ -56,3 +56,4 @@ func GetDB() *sql.DB {
 func SetDBInstance(db *sql.DB) {
 	dbInstance = db
 }
+

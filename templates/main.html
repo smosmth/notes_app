@@ -45,7 +45,7 @@
 
                <div class="person_name">
                   <div class="ava" id="ava">
-                     <div class="ava_txt" id="ava_txt">V</div>
+                     <div class="ava_txt" id="ava_txt">U</div>
                      <img
                         class="ava_ico"
                         src="/static/img/main_img/cu-3-icon-user-online-white-background0.svg"
@@ -61,8 +61,8 @@
                <div class="nav_content">
                   <div class="nav_header">
                      <div class="name_cont">
-                        <div class="name_ico">V</div>
-                        <div class="name_title">Valeriy Pak</div>
+                        <div class="name_ico">U</div>
+                        <div class="name_title">Username</div>
                         <img class="" src="/static/img/main_img/cu-3-icon-dropdown0.svg" />
                      </div>
                      <div class="nav_links">
@@ -273,7 +273,7 @@
             <div class="dropdown_ava">
                <img src="/static/img/dropdawn/nameava.png" alt="" />
                <div class="dropdown_name">
-                  <div class="valeriy">Valeriy Pak</div>
+                  <div class="valeriy">Username</div>
 
                   <div>Online</div>
                </div>
@@ -295,12 +295,18 @@
                <div>Help</div>
             </a>
 
-            <a href="#" class="dropdown_item">
+            <a href="#" class="dropdown_item" id="logoutBtn">
                <img src="/static/img/dropdawn/04.svg" alt="" />
                <div>Log out</div>
             </a>
          </div>
       </div>
+      <script>
+         document.getElementById("logoutBtn").addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = "/logout";
+         });
+      </script>
 
       <script src="/static/js/script.js"></script>
    </body>
