@@ -7,12 +7,43 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"strings"
 
 	"github.com/golang-jwt/jwt/v4"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )
+
+func getUserIDFromContext(r *http.Request) int {
+    // Извлекаем токен из заголовка Authorization
+    authHeader := r.Header.Get("Authorization")
+    if authHeader == "" {
+        return 0 // Нет авторизации
+    }
+
+    tokenString := strings.TrimPrefix(authHeader, "Bearer ")
+    token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+        // Здесь мы должны вернуть ключ для проверки подписи JWT
+        return []byte("Melon11M"), nil
+    })
+    
+    if err != nil || !token.Valid {
+        return 0 // Если токен неверен
+    }
+
+    claims, ok := token.Claims.(jwt.MapClaims)
+    if !ok {
+        return 0 // Ошибка при извлечении данных из токена
+    }
+
+    userID, ok := claims["user_id"].(float64)
+    if !ok {
+        return 0 // Если в токене нет поля user_id
+    }
+
+    return int(userID)
+}
 
 type RegisterRequest struct {
 	Username string `json:"username"`
@@ -96,8 +127,8 @@ func Register(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 }
 
 type LoginRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+    Email    string `json:"email"`
+    Password string `json:"password"`
 }
 
 // Логин пользователя
