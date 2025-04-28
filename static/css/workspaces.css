@@ -1,0 +1,12 @@
+.project_list {
+    padding-left: 25px;
+    margin-top: 5px;
+}
+.project_item {
+    padding: 4px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
