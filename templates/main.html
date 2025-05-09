@@ -37,11 +37,6 @@
             </div>
 
             <div class="main_person">
-               <div class="person_new">
-                  <img src="/static/img/main_img/cu-3-icon-add-circle0.svg" alt="" />
-                  <div class="person_txt">New</div>
-               </div>
-
                <img class="person_icon" src="/static/img/main_img/cu-3-icon-nine-dots0.svg" />
 
                <div class="person_name">
@@ -64,7 +59,7 @@
                      <div class="name_cont">
                         <div class="name_ico">U</div>
                         <div class="name_title">Username</div>
-                        <img class="" src="/static/img/main_img/cu-3-icon-dropdown0.svg" />
+                        <!--<img class="" src="/static/img/main_img/cu-3-icon-dropdown0.svg" />-->
                      </div>
                      <div class="nav_links">
                         <a href="index" class="nav_link">
@@ -80,25 +75,16 @@
 
                   <div class="add_info">
                      <div class="info_body">
-                        <div class="info_top">
-                           <div class="favorites">Favorites</div>
-                           <img class="" src="/static/img/main_img/cu-3-icon-dropdown1.svg" />
-                        </div>
-
                         <div class="add_block">
                            <div class="add_title">Spaces</div>
                            <div class="icons">
-                              <img class="icons_ico" src="/static/img/main_img/cu-3-icon-ellipsis-regular8.svg" />
+                              <!--<img class="icons_ico" src="/static/img/main_img/cu-3-icon-ellipsis-regular8.svg" />-->
                               <img class="icons_ico" src="/static/img/main_img/cu-3-icon-search2.svg" />
                               <button class="add_btn add_btn-style">+</button>
                            </div>
                         </div>
 
                         <div class="info_list">
-                           <div class="every">
-                              <img class="" src="/static/img/main_img/cu-3-icon-sidebar-everything0.svg" />
-                              Everything
-                           </div>
                            <div class="team">
                               <div class="team_wrapper">
                                  <div class="team_ico">
@@ -117,37 +103,23 @@
                            </div>
 
                            <div class="project_list hidden">
-                              <div class="project_item">📁 Project Alpha</div>
-                              <div class="project_item">📁 Project Beta</div>
-                           </div>
-
-                           <div class="team projects">
-                              <div class="team_wrapper">
-                                 <img class="" src="/static/img/main_img/cu-3-icon-sidebar-folder-open0.svg" />
-                                 <div class="team_txt">Projects</div>
-                              </div>
-                              <div class="icons_right">
-                                 <button>
-                                    <img class="icon_r" src="/static/img/main_img/cu-3-icon-ellipsis-regular6.svg" />
-                                 </button>
-                                 <button>
-                                    <img class="icon_r" src="/static/img/main_img/cu-3-icon-add-small3.svg" />
-                                 </button>
+                              <div class="project_item" id="project_alpha">
+                                 📁 Project Alpha
+                                 <div class="project_controls">
+                                    <button class="edit_project_btn">
+                                       <img src="/static/img/main_img/cu-3-icon-ellipsis-regular6.svg" />
+                                    </button>
+                                 </div>
                               </div>
                            </div>
 
-                           <!-- SCRIPT -->
                            <div class="title_info"></div>
 
                            <div class="every">
-                              <img class="" src="/static/img/main_img/cu-3-icon-sidebar-spaces0.svg" />
-                              View all Spaces
-                           </div>
-                           <div class="every">
-                              <button class="add_btn">
+                              <button id="create_space_btn" class="add_btn">
                                  <img class="every_ico" src="/static/img/main_img/cu-3-icon-sidebar-add0.svg" />
                               </button>
-                              <div class="every_txt">Create Space</div>
+                              <div class="every_txt">New Space</div>
                            </div>
                         </div>
                      </div>
@@ -170,8 +142,8 @@
                </div>
             </div>
 
-            <div class="block2">
-               <div class="content_header">
+            <div class="block2" id="workspace_view">
+               <!--<div class="content_header">
                   <div class="header_left">
                      <button class="team_wrapper">
                         <div class="team_ico">
@@ -196,13 +168,11 @@
                      <button class="list_elem">Share</button>
                      <button class="list_elem">Automations</button>
                   </div>
-               </div>
+               </div>-->
 
                <div class="content_bottom">
                   <div class="cont_left">
-                     <button class="board">Board</button>
-                     <button class="board">List</button>
-                     <button class="board">+View</button>
+                     <button class="board">Ask AI</button>
                   </div>
                   <div class="cont_right">
                      <div class="cont_item">
@@ -218,15 +188,62 @@
                         <div class="item_txt">Customize</div>
                      </div>
                      <button class="cont_add">
-                        <div class="add_txt">Add Task</div>
+                        <div class="add_txt">Create</div>
                         <img class="add_ico" src="/static/img/main_img/cu-3-icon-chevron-down2.svg" />
                      </button>
-                     <button class="button9">
+                     <!--<button class="button9">
                         <img class="" src="/static/img/main_img/cu-3-icon-chevron-up0.svg" />
-                     </button>
+                     </button>-->
                   </div>
                </div>
-               <div class="cont_new">
+               <div class="drag">
+                  <div class="drag_list">
+                     <div class="drag_column">
+                        <div class="drag_item" data-zone="1">
+                           <div class="recent">Recent</div>
+
+                           <div class="drag_txt">
+                              <div class="drag_img">
+                                 <img src="/static/img/docs_img/group0.svg" alt="" />
+                              </div>
+                              <div id="dropZone">Your recently opened Docs will show here.</div>
+                           </div>
+
+                           <div class="fileList" id="fileList1"></div>
+                        </div>
+                     </div>
+                     <div class="drag_column">
+                        <div class="drag_item" data-zone="2">
+                           <div class="recent">Favorites</div>
+
+                           <div class="drag_txt">
+                              <div class="drag_img">
+                                 <img src="/static/img/docs_img/group0.svg" alt="" />
+                              </div>
+                              <div id="#">Your favorited Docs will show here.</div>
+                           </div>
+
+                           <div class="fileList" id="fileList2"></div>
+                        </div>
+                     </div>
+                     <div class="drag_column">
+                        <div class="drag_item" data-zone="3">
+                           <div class="recent">Created by Me</div>
+
+                           <div class="drag_txt">
+                              <div class="drag_img">
+                                 <img src="/static/img/docs_img/group0.svg" alt="" />
+                              </div>
+                              <div id="##">All Docs created by you will show here.</div>
+                           </div>
+
+                           <div class="fileList" id="fileList3"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <input type="file" id="fileInput" multiple style="display: none" />
+               </div>
+               <!--<div class="cont_new">
                   <div class="header_right">
                      <!-- <button class="list_elem-new">
                         <img class="" src="/static/img/main_img/cu-3-icon-group0.svg">
@@ -241,7 +258,7 @@
                         <img class="" src="/static/img/main_img/cu-3-icon-columns0.svg">
 
                         Columns
-                     </button> -->
+                     </button>
                   </div>
                   <div class="header_right">
                      <button class="list_elem-new">
@@ -254,11 +271,26 @@
                      </button>
                      <input class="elem_inp" type="text" placeholder="Search..." />
                   </div>
-               </div>
+               </div> -->
 
-               <div class="cont_info">
-                  <button class="new_todo">TO DO</button>
-                  <div class="count_task"></div>
+               <div class="all">
+                  <div class="all_body">
+                     <div class="all_item active">All</div>
+                     <div class="all_item">Notes</div>
+                     <div class="all_item">Tasks</div>
+                     <div class="all_item">Docs</div>
+                  </div>
+
+                  <div class="all_search">
+                     <div class="all_search-item">
+                        <img class="" src="/static/img/docs_img/cu-3-icon-search1.svg" />
+                        Search
+                     </div>
+                     <div class="all_search-item">
+                        <img class="" src="/static/img/docs_img/cu-3-icon-filter0.svg" />
+                        Filters
+                     </div>
+                  </div>
                </div>
 
                <!-- SCRIPTS -->
@@ -308,12 +340,12 @@
             </a>
          </div>
       </div>
-      <script>
+      <!--<script>
          document.getElementById("logoutBtn").addEventListener("click", function (e) {
             e.preventDefault();
             window.location.href = "/logout";
          });
-      </script>
+      </script>-->
 
       <script src="/static/js/script.js"></script>
       <script src="/static/js/workspaces.js"></script>

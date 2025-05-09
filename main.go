@@ -68,22 +68,22 @@ func main() {
 	
 	router.HandleFunc("/logout", handlers.Logout).Methods("GET")
 
-    // API для заметок (защищённый доступ)
-    notesHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        switch r.Method {
-        case http.MethodGet:
-            handlers.GetNotes(db, cfg.JWTSecret, w, r)
-        case http.MethodPost:
-            handlers.AddNote(db, cfg.JWTSecret, w, r)
-        case http.MethodPut:
-            handlers.UpdateNote(db, cfg.JWTSecret, w, r)
-        case http.MethodDelete:
-            handlers.DeleteNote(db, cfg.JWTSecret, w, r)
-        default:
-            http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-        }
-    })
-    router.Handle("/api/notes", middleware.AuthMiddleware(cfg.JWTSecret, notesHandler))
+    //// API для заметок (защищённый доступ)
+    //notesHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    //    switch r.Method {
+    //    case http.MethodGet:
+    //        handlers.GetNotes(db, cfg.JWTSecret, w, r)
+    //    case http.MethodPost:
+    //        handlers.AddNote(db, cfg.JWTSecret, w, r)
+    //    case http.MethodPut:
+    //        handlers.UpdateNote(db, cfg.JWTSecret, w, r)
+    //    case http.MethodDelete:
+    //        handlers.DeleteNote(db, cfg.JWTSecret, w, r)
+    //    default:
+    //        http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+    //    }
+    //})
+    //router.Handle("/api/notes", middleware.AuthMiddleware(cfg.JWTSecret, notesHandler))
 
     // Защищённые HTML-страницы
     router.Handle("/main", middleware.AuthMiddleware(cfg.JWTSecret, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
